@@ -35,10 +35,10 @@ switch ($type) {
         $msg = 'Appellant details submitted successfully.';
         echo json_encode(['code' => 200, 'msg' => $msg]);
         break;
-    case "case":
+    case "court":
         $respondent = $_POST['rname'];
         $appellant = $_POST['aname'];
-        $case_no = $_POST['case_no'];
+        $case_no = $_POST['caseno'];
         $location = $_POST['location'];
         $date = $_POST['date'];
         $judge = $_POST['judge'];
@@ -46,8 +46,13 @@ switch ($type) {
         $a_date = $_POST['adate'];
         $judgement = $_POST['judgement'];
 
-        $sql = "INSERT INTO case (respondent, appellant, case_no, location, date, judge, lawyer, a_date, judgement) VALUES ('$respondent', '$appellant', '$case_no', '$location', '$date', '$judge', '$lawyer', '$a_date', '$judgement')";
-        $result = $conn->query($sql);
+        $sql = "INSERT INTO court (respondent, appellant, case_no, location, date, judge, lawyer, a_date, judgement) VALUES ('$respondent', '$appellant', '$case_no', '$location', '$date', '$judge', '$lawyer', '$a_date', '$judgement')";
+        try {
+            $result = $conn->query($sql);
+        } catch (Exception $e) {
+            echo json_encode($e->getMessage());
+            break;
+        }
 
         $msg = 'Case details submitted successfully.';
         echo json_encode(['code' => 200, 'msg' => $msg]);

@@ -16,7 +16,7 @@ if (!isset($_SESSION['type'])) {
     <div class="container mt-5">
         <div class="col-md-6 alert alert-warning center" role="alert">
             <i class="fas fa-exclamation-triangle"></i>
-            You need to login before accessing this page!
+            You need to login before accessing this page! Redirecting...
         </div>
     </div>
 

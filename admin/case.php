@@ -16,7 +16,7 @@ if (!isset($_SESSION['type'])) {
     <div class="container mt-5">
         <div class="col-md-6 alert alert-warning center" role="alert">
             <i class="fas fa-exclamation-triangle"></i>
-            You need to login before accessing this page!
+            You need to login before accessing this page! Redirecting...
         </div>
     </div>
 
@@ -46,7 +46,7 @@ if (!isset($_SESSION['type'])) {
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Error!</strong>
         </div>
-        <form id="entryform">
+        <form id="entryform" method="POST" action="/scripts/dataentry.php">
             <div class="form-group">
                 <label for="rname" class="col-sm-2 col-form-label">Name of Respondent</label>
                 <div class="col-md-6">
@@ -121,7 +121,7 @@ if (!isset($_SESSION['type'])) {
                 var lawyer = $("#lawyer").val();
                 var adate = $("#adate").val();
                 var judgement = $("#judgement").val();
-                var type = 'case';
+                var type = 'court';
 
                 $.ajax({
                     type: "POST",
@@ -130,7 +130,7 @@ if (!isset($_SESSION['type'])) {
                     data: {
                         rname: rname,
                         aname: aname,
-                        case_no: caseno,
+                        caseno: caseno,
                         location: location,
                         date: date,
                         judge: judge,
