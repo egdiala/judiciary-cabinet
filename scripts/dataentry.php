@@ -47,16 +47,41 @@ switch ($type) {
         $judgement = $_POST['judgement'];
 
         $sql = "INSERT INTO court (respondent, appellant, case_no, location, date, judge, lawyer, a_date, judgement) VALUES ('$respondent', '$appellant', '$case_no', '$location', '$date', '$judge', '$lawyer', '$a_date', '$judgement')";
-        try {
-            $result = $conn->query($sql);
-        } catch (Exception $e) {
-            echo json_encode($e->getMessage());
-            break;
-        }
+
+        $msg = 'Case details submitted successfully.';
+        echo json_encode(['code' => 200, 'msg' => $msg]);
+        break;
+    case "judge":
+        $respondent = $_POST['rname'];
+        $appellant = $_POST['aname'];
+        $case_no = $_POST['caseno'];
+        $location = $_POST['location'];
+        $date = $_POST['date'];
+        $judge = $_POST['judge'];
+        $lawyer = $_POST['lawyer'];
+        $a_date = $_POST['adate'];
+        $judgement = $_POST['judgement'];
+
+        $sql = "INSERT INTO court (respondent, appellant, case_no, location, date, judge, lawyer, a_date, judgement) VALUES ('$respondent', '$appellant', '$case_no', '$location', '$date', '$judge', '$lawyer', '$a_date', '$judgement')";
+
+        $msg = 'Case details submitted successfully.';
+        echo json_encode(['code' => 200, 'msg' => $msg]);
+        break;
+    case "adjourned":
+        $respondent = $_POST['rname'];
+        $appellant = $_POST['aname'];
+        $case_no = $_POST['caseno'];
+        $detail = $_POST['detail'];
+        $lawyer = $_POST['lawyer'];
+        $judge = $_POST['judge'];
+        $a_date = $_POST['adate'];
+        $date = $_POST['date'];
+
+        $sql = "INSERT INTO adjourned (respondent, appellant, case_no, detail, date, judge, lawyer, a_date) VALUES ('$respondent', '$appellant', '$case_no', '$detail', '$date', '$judge', '$lawyer', '$a_date')";
 
         $msg = 'Case details submitted successfully.';
         echo json_encode(['code' => 200, 'msg' => $msg]);
         break;
     default:
-        echo "Your favorite color is neither red, blue, nor green!";
+        echo "You have not filled any form";
 }
